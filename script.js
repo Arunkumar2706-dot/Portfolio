@@ -24,106 +24,67 @@ navLinks.querySelectorAll('a').forEach(link => {
 });
 
 
-// 2. Three.js Background (Glowing Wireframe Icosahedron - Cyber Node)
-const initThreeJS = () => {
-  const canvas = document.getElementById('hero-canvas');
-  if (!canvas) return;
+// 2. Star Background Canvas
+const initStars = () => {
+  const container = document.getElementById('stars-container');
+  if (!container) return;
 
-  const scene = new THREE.Scene();
-  // No background color set means transparent relative to body if alpha:true, 
-  // but we'll let it just sit on top of the CSS background
-  
-  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-  camera.position.z = 5;
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  container.appendChild(canvas);
 
-  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // cap pixel ratio for performance
-  renderer.setSize(window.innerWidth, window.innerHeight);
+  let width, height;
+  let stars = [];
 
-  // The Cyber Node (Icosahedron)
-  const geometry = new THREE.IcosahedronGeometry(2, 1);
-  const material = new THREE.MeshBasicMaterial({ 
-    color: 0x00f0ff, 
-    wireframe: true,
-    transparent: true,
-    opacity: 0.3
-  });
-  const node = new THREE.Mesh(geometry, material);
-  scene.add(node);
-
-  // Particles
-  const particlesGeometry = new THREE.BufferGeometry();
-  const particlesCount = 500;
-  const posArray = new Float32Array(particlesCount * 3);
-
-  for(let i = 0; i < particlesCount * 3; i++) {
-    // Spread particles around
-    posArray[i] = (Math.random() - 0.5) * 15;
-  }
-  
-  particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-  const particlesMaterial = new THREE.PointsMaterial({
-    size: 0.02,
-    color: 0x00f0ff,
-    transparent: true,
-    opacity: 0.5
-  });
-  
-  const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-  scene.add(particlesMesh);
-
-  // Animation Loop
-  let mouseX = 0;
-  let mouseY = 0;
-  let targetX = 0;
-  let targetY = 0;
-  const windowHalfX = window.innerWidth / 2;
-  const windowHalfY = window.innerHeight / 2;
-
-  document.addEventListener('mousemove', (event) => {
-    mouseX = (event.clientX - windowHalfX);
-    mouseY = (event.clientY - windowHalfY);
-  });
-
-  const clock = new THREE.Clock();
-
-  const animate = () => {
-    requestAnimationFrame(animate);
-    const elapsedTime = clock.getElapsedTime();
-
-    targetX = mouseX * 0.001;
-    targetY = mouseY * 0.001;
-
-    // Rotate Node
-    node.rotation.y += 0.002;
-    node.rotation.x += 0.001;
-
-    // Rotate Particles slightly based on mouse
-    particlesMesh.rotation.y += 0.0005;
-    particlesMesh.rotation.x += 0.0005;
-    
-    // Parallax effect
-    node.rotation.y += 0.05 * (targetX - node.rotation.y);
-    node.rotation.x += 0.05 * (targetY - node.rotation.x);
-
-    renderer.render(scene, camera);
+  const resize = () => {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+    initStarsArray();
   };
 
-  animate();
+  const initStarsArray = () => {
+    stars = [];
+    const numStars = Math.floor((width * height) / 1000); // density
+    for (let i = 0; i < numStars; i++) {
+      stars.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        radius: Math.random() * 1.5,
+        vx: (Math.random() - 0.5) * 0.2,
+        vy: (Math.random() - 0.5) * 0.2
+      });
+    }
+  };
 
-  // Resize Handler
-  window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-  });
+  const animate = () => {
+    ctx.clearRect(0, 0, width, height);
+    ctx.fillStyle = '#ffffff';
+
+    stars.forEach(star => {
+      star.x += star.vx;
+      star.y += star.vy;
+
+      if (star.x < 0) star.x = width;
+      if (star.x > width) star.x = 0;
+      if (star.y < 0) star.y = height;
+      if (star.y > height) star.y = 0;
+
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    requestAnimationFrame(animate);
+  };
+
+  window.addEventListener('resize', resize);
+  resize();
+  animate();
 };
 
-// Only init if user doesn't prefer reduced motion
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-if (!prefersReducedMotion) {
-  initThreeJS();
-}
+initStars();
 
 
 // 3. UI/UX Enhancements

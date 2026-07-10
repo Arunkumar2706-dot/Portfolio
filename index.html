@@ -13,6 +13,9 @@
 </head>
 <body>
   
+  <!-- Space Background Container -->
+  <div class="stars-bg" id="stars-container"></div>
+  
   <!-- Navigation -->
   <nav id="navbar">
     <div class="nav-container">
@@ -34,7 +37,9 @@
 
   <!-- Hero Section -->
   <section id="hero">
-    <canvas id="hero-canvas"></canvas>
+    <video autoplay loop muted playsinline class="blackhole-video">
+      <source src="assets/videos/blackhole.webm" type="video/webm">
+    </video>
     <div class="hero-content">
       <h1 class="glitch" data-text="ARUN KUMAR M">ARUN KUMAR M</h1>
       <h2 class="subtitle">Cybersecurity & CSE Honours Student</h2>
@@ -73,17 +78,21 @@
         </div>
         <div class="about-skills glass">
           <h3>Technical Skills</h3>
-          <div class="skill-category">
-            <h4>Programming & Web</h4>
-            <div class="tags"><span class="tag">Python</span><span class="tag">Java</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">PHP</span></div>
-          </div>
-          <div class="skill-category">
-            <h4>Cybersecurity</h4>
-            <div class="tags"><span class="tag">VAPT</span><span class="tag">Network Scanning</span><span class="tag">Web Security</span><span class="tag">Phishing Detection</span><span class="tag">OWASP Top 10</span></div>
-          </div>
-          <div class="skill-category">
-            <h4>Tools & Tech</h4>
-            <div class="tags"><span class="tag">Nmap</span><span class="tag">Burp Suite</span><span class="tag">Metasploit</span><span class="tag">OWASP ZAP</span><span class="tag">Wireshark</span></div>
+          <p class="desc mb-2">My arsenal of cybersecurity and development tools.</p>
+          <div class="skills-marquee-container">
+            <div class="skills-marquee">
+              <!-- Animated skills from reference -->
+              <img src="assets/skills/python.png" alt="Python" class="skill-icon" onerror="this.src='assets/skills/js.png'">
+              <img src="assets/skills/react.png" alt="React" class="skill-icon">
+              <img src="assets/skills/node.png" alt="Node" class="skill-icon">
+              <img src="assets/skills/html.png" alt="HTML" class="skill-icon">
+              <img src="assets/skills/css.png" alt="CSS" class="skill-icon">
+              <img src="assets/skills/docker.png" alt="Docker" class="skill-icon">
+              <img src="assets/skills/mysql.png" alt="MySQL" class="skill-icon">
+              <img src="assets/skills/mongodb.png" alt="MongoDB" class="skill-icon">
+              <img src="assets/skills/tailwind.png" alt="Tailwind" class="skill-icon">
+              <img src="assets/skills/postgresql.png" alt="PostgreSQL" class="skill-icon">
+            </div>
           </div>
         </div>
       </div>
@@ -213,7 +222,6 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
