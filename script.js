@@ -150,13 +150,23 @@ sections.forEach(sec => {
 });
 
 // About Section
+gsap.from('.about-image', {
+  scrollTrigger: {
+    trigger: '#about',
+    start: 'top 70%',
+  },
+  opacity: 0,
+  scale: 0.8,
+  duration: 1
+});
+
 gsap.from('.about-text', {
   scrollTrigger: {
     trigger: '#about',
     start: 'top 70%',
   },
   opacity: 0,
-  x: -50,
+  x: 50,
   duration: 1
 });
 
