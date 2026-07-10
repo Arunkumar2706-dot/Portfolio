@@ -1,13 +1,29 @@
 :root {
-  --bg-color: #050914;
-  --bg-alt: #0a0f1d;
-  --text-primary: #e2e8f0;
+  --bg-color: #030712;
+  --bg-alt: #0b1120;
+  --text-primary: #f8fafc;
   --text-secondary: #94a3b8;
   --accent: #00f0ff;
+  --accent-secondary: #b026ff;
   --accent-glow: rgba(0, 240, 255, 0.4);
-  --glass-bg: rgba(15, 23, 42, 0.6);
+  --glass-bg: rgba(15, 23, 42, 0.4);
   --glass-border: rgba(0, 240, 255, 0.15);
   --font-main: 'Space Grotesk', sans-serif;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 240, 255, 0.3);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
 }
 
 * {
@@ -140,10 +156,12 @@ nav {
 }
 
 nav.scrolled {
-  background: rgba(5, 9, 20, 0.85);
-  backdrop-filter: blur(10px);
+  background: rgba(3, 7, 18, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   padding: 1rem 0;
   border-bottom: 1px solid var(--glass-border);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 }
 
 .nav-container {
@@ -231,7 +249,49 @@ nav.scrolled {
   position: relative;
   color: white;
   margin-bottom: 0.5rem;
-  letter-spacing: 2px;
+  letter-spacing: 4px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+}
+
+.glitch::before {
+  color: var(--accent);
+  z-index: -1;
+  animation: glitch-anim 2.5s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+  color: var(--accent-secondary);
+  z-index: -2;
+  animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+  0% { clip-path: inset(20% 0 80% 0); transform: translate(-2px, 1px); }
+  20% { clip-path: inset(60% 0 10% 0); transform: translate(2px, -1px); }
+  40% { clip-path: inset(40% 0 50% 0); transform: translate(-2px, 2px); }
+  60% { clip-path: inset(80% 0 5% 0); transform: translate(2px, -2px); }
+  80% { clip-path: inset(10% 0 70% 0); transform: translate(-1px, 1px); }
+  100% { clip-path: inset(30% 0 50% 0); transform: translate(1px, -1px); }
+}
+
+@keyframes glitch-anim-2 {
+  0% { clip-path: inset(10% 0 60% 0); transform: translate(2px, -1px); }
+  20% { clip-path: inset(30% 0 20% 0); transform: translate(-2px, 1px); }
+  40% { clip-path: inset(70% 0 10% 0); transform: translate(2px, -2px); }
+  60% { clip-path: inset(20% 0 50% 0); transform: translate(-2px, 2px); }
+  80% { clip-path: inset(50% 0 30% 0); transform: translate(1px, -1px); }
+  100% { clip-path: inset(5% 0 80% 0); transform: translate(-1px, 1px); }
 }
 
 .subtitle {
@@ -314,26 +374,39 @@ nav.scrolled {
 
 #profile-photo {
   width: 100%;
-  max-width: 300px;
+  max-width: 320px;
   border-radius: 50%;
-  border: 3px solid var(--accent);
-  box-shadow: 0 0 25px var(--accent-glow);
+  border: 4px solid var(--accent);
+  box-shadow: 0 0 30px var(--accent-glow), inset 0 0 20px var(--accent-glow);
   position: relative;
   z-index: 2;
   background-color: var(--bg-color); /* Fallback */
+  object-fit: cover;
+  aspect-ratio: 1/1;
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.about-image:hover #profile-photo {
+  transform: scale(1.05) rotate(2deg);
 }
 
 .image-glow {
   position: absolute;
   width: 100%;
   height: 100%;
-  max-width: 320px;
-  max-height: 320px;
-  background: var(--accent);
+  max-width: 340px;
+  max-height: 340px;
+  background: radial-gradient(circle, var(--accent) 0%, var(--accent-secondary) 100%);
   border-radius: 50%;
-  filter: blur(60px);
-  opacity: 0.15;
+  filter: blur(50px);
+  opacity: 0.3;
   z-index: 1;
+  animation: pulse-glow 4s infinite alternate;
+}
+
+@keyframes pulse-glow {
+  0% { transform: scale(0.9); opacity: 0.2; }
+  100% { transform: scale(1.1); opacity: 0.4; }
 }
 
 .about-text {
@@ -388,13 +461,20 @@ nav.scrolled {
 }
 
 .tag {
-  background: rgba(0, 240, 255, 0.1);
+  background: rgba(0, 240, 255, 0.05);
   color: var(--accent);
-  border: 1px solid rgba(0, 240, 255, 0.2);
-  padding: 0.4rem 0.8rem;
-  border-radius: 4px;
+  border: 1px solid var(--glass-border);
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
   font-size: 0.85rem;
   font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.tag:hover {
+  background: rgba(0, 240, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--accent-glow);
 }
 
 /* Projects Section */
@@ -485,8 +565,14 @@ nav.scrolled {
   border-radius: 50%;
   background: var(--bg-color);
   border: 3px solid var(--accent);
-  box-shadow: 0 0 10px var(--accent-glow);
+  box-shadow: 0 0 15px var(--accent-glow);
   z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.timeline-item:hover .timeline-dot {
+  background: var(--accent);
+  transform: scale(1.2);
 }
 
 .timeline-content h3 {

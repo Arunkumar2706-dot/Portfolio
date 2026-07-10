@@ -126,12 +126,42 @@ if (!prefersReducedMotion) {
 }
 
 
-// 3. GSAP Animations
+// 3. UI/UX Enhancements
+// Initialize VanillaTilt for 3D hover effects on cards
+if (typeof VanillaTilt !== 'undefined') {
+  VanillaTilt.init(document.querySelectorAll(".tilt-element"), {
+    max: 15,
+    speed: 400,
+    glare: true,
+    "max-glare": 0.2,
+  });
+}
+
+// Typing Effect for Subtitle
+const subtitleText = "Cybersecurity & CSE Honours Student";
+const subtitleElement = document.querySelector('.subtitle');
+if (subtitleElement) {
+  subtitleElement.textContent = '';
+  let i = 0;
+  
+  // Start typing after initial load animations
+  setTimeout(() => {
+    const typeWriter = setInterval(() => {
+      if (i < subtitleText.length) {
+        subtitleElement.textContent += subtitleText.charAt(i);
+        i++;
+      } else {
+        clearInterval(typeWriter);
+      }
+    }, 50); // Speed of typing
+  }, 1000); // Delay before starting
+}
+
+// 4. GSAP Animations
 gsap.registerPlugin(ScrollTrigger);
 
 // Hero Animations
 gsap.from('.glitch', { opacity: 0, y: 50, duration: 1, delay: 0.2 });
-gsap.from('.subtitle', { opacity: 0, y: 30, duration: 1, delay: 0.4 });
 gsap.from('.tagline', { opacity: 0, y: 20, duration: 1, delay: 0.6 });
 gsap.from('.hero-buttons', { opacity: 0, y: 20, duration: 1, delay: 0.8 });
 
