@@ -1,13 +1,217 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>portfolio</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arun Kumar M - Cyber Security Portfolio</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <div class="logo">ARUN KUMAR M</div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-content">
+      <h1 class="glitch" data-text="ARUN KUMAR M">ARUN KUMAR M</h1>
+      <h2 class="subtitle">Cybersecurity & CSE Honours Student</h2>
+      <p class="tagline">Securing digital environments, one system at a time.</p>
+      <div class="hero-buttons">
+        <a href="#projects" class="btn primary">View Projects</a>
+        <a href="#about" class="btn secondary">About Me</a>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="mouse"></div>
+      <p>Scroll</p>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>Hi, I’m <span class="accent">Arun Kumar M</span>, a Final-year Computer Science Engineering student specializing in Cyber Security.</p>
+          <p>With hands-on experience in VAPT, network reconnaissance, API security testing, and web application security assessment gained across internships, I have a proven ability to identify, validate, and report security vulnerabilities.</p>
+          <div class="education-card glass">
+            <h3>B.E. (Hons.) CSE – Cyber Security</h3>
+            <p>SRM Madurai College for Engineering and Technology</p>
+            <div class="edu-meta">
+              <span>2023 – 2027</span>
+              <span class="accent">CGPA: 8.1</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-skills glass">
+          <h3>Technical Skills</h3>
+          <div class="skill-category">
+            <h4>Programming & Web</h4>
+            <div class="tags"><span class="tag">Python</span><span class="tag">Java</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">PHP</span></div>
+          </div>
+          <div class="skill-category">
+            <h4>Cybersecurity</h4>
+            <div class="tags"><span class="tag">VAPT</span><span class="tag">Network Scanning</span><span class="tag">Web Security</span><span class="tag">Phishing Detection</span><span class="tag">OWASP Top 10</span></div>
+          </div>
+          <div class="skill-category">
+            <h4>Tools & Tech</h4>
+            <div class="tags"><span class="tag">Nmap</span><span class="tag">Burp Suite</span><span class="tag">Metasploit</span><span class="tag">OWASP ZAP</span><span class="tag">Wireshark</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="section bg-alt">
+    <div class="container">
+      <h2 class="section-title">Projects</h2>
+      <div class="projects-grid">
+        <!-- Project Card 1 -->
+        <div class="project-card glass tilt">
+          <div class="project-content">
+            <h3>ParkLink</h3>
+            <p class="subtitle">Smart Parking & EV Slot Management</p>
+            <p class="desc">Real-time smart parking platform with live slot availability, OTP/Google authentication, and role-based dashboards. Prevented double booking using MongoDB atomic transactions with cron-based auto slot recovery.</p>
+            <div class="tags">
+              <span class="tag">React.js</span>
+              <span class="tag">Node.js</span>
+              <span class="tag">Firebase</span>
+              <span class="tag">MongoDB</span>
+            </div>
+          </div>
+          <div class="project-links">
+            <a href="#" class="icon-link">GitHub</a>
+            <a href="#" class="icon-link">Live Demo</a>
+          </div>
+        </div>
+        <!-- Add more projects here as needed -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience" class="section">
+    <div class="container">
+      <h2 class="section-title">Experience</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content glass">
+            <h3>Cybersecurity Analyst Intern</h3>
+            <h4 class="accent">Hebesec Technologies Pvt. Ltd.</h4>
+            <span class="date">June 2026 – Present</span>
+            <p>Conducted vulnerability assessments, network reconnaissance, web application security testing, and technical security reporting using industry-standard tools.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content glass">
+            <h3>Cyber Security Intern</h3>
+            <h4 class="accent">Future Interns</h4>
+            <span class="date">Apr 2026 – May 2026</span>
+            <p>Conducted web app security assessments, phishing/email header analysis, and API security testing using Nmap, OWASP ZAP, and Postman; prepared client-ready remediation reports.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content glass">
+            <h3>Data Analytics Intern</h3>
+            <h4 class="accent">IBM</h4>
+            <span class="date">Mar 2026 – Apr 2026</span>
+            <p>Developed List/Crosstab reports and interactive dashboards in IBM Cognos Analytics to monitor KPIs and generate business insights.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications & Achievements -->
+  <section id="certifications" class="section bg-alt">
+    <div class="container">
+      <h2 class="section-title">Certifications & Achievements</h2>
+      <div class="grid-2-col">
+        <div class="cert-box glass">
+          <h3>Certifications</h3>
+          <ul>
+            <li><strong>Front-End Technologies</strong> (HTML, CSS, JavaScript)</li>
+            <li><strong>Introduction to IoT</strong> (Architecture, Sensors, MQTT/HTTP, Cloud)</li>
+            <li><strong>Cyber Security Internship</strong> - Future Interns</li>
+            <li><strong>Data Analytics</strong> - IBM Cognos Analytics</li>
+          </ul>
+        </div>
+        <div class="cert-box glass">
+          <h3>Achievements</h3>
+          <ul>
+            <li><strong>Event Coordinator</strong> – TECHDAY'26 (Managed 120+ participants)</li>
+            <li><strong>Ideathon Participant</strong> – Thiagarajar College of Engineering</li>
+            <li><strong>IEEE Xplore Training</strong> – SRM Madurai</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section">
+    <div class="container">
+      <h2 class="section-title">Contact</h2>
+      <div class="contact-wrapper glass">
+        <div class="contact-info">
+          <h3>Get In Touch</h3>
+          <p>I'm always open to discussing new opportunities and security challenges.</p>
+          <ul class="contact-links">
+            <li><a href="mailto:marun4201@gmail.com">marun4201@gmail.com</a></li>
+            <li>+91 9342590906</li>
+            <li><a href="https://github.com/Arunkumar2706-dot">GitHub Profile</a></li>
+          </ul>
+        </div>
+        <form class="contact-form" action="mailto:marun4201@gmail.com" method="post" enctype="text/plain">
+          <input type="text" name="name" placeholder="Name" required>
+          <input type="email" name="email" placeholder="Email" required>
+          <textarea name="message" rows="5" placeholder="Message" required></textarea>
+          <button type="submit" class="btn primary">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Arun Kumar M. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="script.js"></script>
+</body>
 </html>
